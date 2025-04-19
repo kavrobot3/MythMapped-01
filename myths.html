@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Myths - MythMapped</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="custom-pointer"></div>
+
+    <header>
+        <h1>Explore Myths</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="map.html">Interactive Map</a></li>
+                <li><a href="myths.html">Explore Myths</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="contribute.html">Contribute</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="timeline-bar">
+      <span>🌀 3000 BCE — Sumerians</span>
+      <span>🛕 1000 BCE — Ramayana</span>
+      <span>⚡ 500 BCE — Greek & Norse</span>
+      <span>🔥 0 CE — Jesus & Krishna tales</span>
+      <span>🌊 1000 CE — Polynesian Māui</span>
+    </div>
+    
+    <aside class="sidebar">
+      <h3>Jump to Region</h3>
+      <ul>
+        <li><a href="#africa">Africa</a></li>
+        <li><a href="#asia">Asia</a></li>
+        <li><a href="#india">India</a></li>
+        <li><a href="#europe">Europe</a></li>
+        <li><a href="#north-america">North America</a></li>
+        <li><a href="#south-america">South America</a></li>
+        <li><a href="#oceania">Oceania</a></li>
+      </ul>
+    </aside>
+    
+    <main class="myths-container">
+      <section class="region-card" data-region="africa" id="africa">
+        <h2>Africa</h2>
+        <ul>
+          <li><strong>West Africa - Anansi the Spider:</strong> Trickster god symbolizing wisdom and storytelling.</li>
+          <li><strong>North Africa - The Curse of the Pharaohs:</strong> Deadly curses guarding tombs like Tutankhamun’s.</li>
+          <li><strong>Southern Africa - The Lightning Bird:</strong> Storm-bringing supernatural bird guarding treasures.</li>
+        </ul>
+      </section>
+    
+      <section class="region-card" data-region="asia" id="asia">
+        <h2>Asia</h2>
+        <ul>
+          <li><strong>East Asia - The Moon Rabbit:</strong> Rabbit creating the elixir of life on the moon.</li>
+          <li><strong>South Asia - Ravana and the Ten Heads:</strong> Ramayana’s powerful demon king.</li>
+          <li><strong>Southeast Asia - Naga:</strong> Serpent guardians of sacred land.</li>
+          <li><strong>Central Asia - Ergenekon:</strong> Valley symbolizing rebirth of Turkic tribes.</li>
+          <li><strong>Middle East - Djinn:</strong> Fire-born beings of power and mystery.</li>
+        </ul>
+      </section>
+    
+      <section class="region-card" data-region="europe" id="europe">
+        <h2>Europe</h2>
+        <ul>
+          <li><strong>Norse - Ragnarök:</strong> Doom and rebirth of the world.</li>
+          <li><strong>Greek - Pandora’s Box:</strong> Tale of unleashed evils.</li>
+          <li><strong>Celtic - The Banshee:</strong> Spirit that cries before death.</li>
+          <li><strong>Slavic - Baba Yaga:</strong> Bone-legged witch of the woods.</li>
+        </ul>
+      </section>
+    
+      <section class="region-card" data-region="north-america" id="north-america">
+        <h2>North America</h2>
+        <ul>
+          <li><strong>Native American - Coyote the Trickster:</strong> A chaos-loving shapeshifter.</li>
+          <li><strong>The Wendigo:</strong> Spirit of greed and starvation.</li>
+        </ul>
+      </section>
+    
+      <section class="region-card" data-region="south-america" id="south-america">
+        <h2>South America</h2>
+        <ul>
+          <li><strong>Inca - Viracocha:</strong> Creator of cosmos and humanity.</li>
+          <li><strong>Amazonian - Pink River Dolphin:</strong> Shape-shifting river spirit.</li>
+        </ul>
+      </section>
+    
+      <section class="region-card" data-region="oceania" id="oceania">
+        <h2>Australia & Oceania</h2>
+        <ul>
+          <li><strong>Aboriginal - Rainbow Serpent:</strong> Life-giving Dreamtime deity.</li>
+          <li><strong>Polynesian - Māui:</strong> Demigod who shaped islands and slowed the sun.</li>
+        </ul>
+      </section>
+    
+      <!-- NEW: Special Region - India -->
+      <section class="region-card" data-region="india" id="india">
+        <h2>India</h2>
+    
+        <h3>1. Hindu Mythology</h3>
+        <ul>
+          <li><strong>Rama and the Ramayana:</strong> Epic journey to rescue Sita.</li>
+          <li><strong>Krishna’s Leelas:</strong> Divine childhood, Gita teachings.</li>
+          <li><strong>The Mahabharata War:</strong> Pandavas vs Kauravas and the Bhagavad Gita.</li>
+          <li><strong>Shiva’s Tandava:</strong> Cosmic dance of destruction.</li>
+          <li><strong>Durga and Mahishasura:</strong> Goddess slays the buffalo demon.</li>
+        </ul>
+    
+        <h3>2. Regional & Folk Myths</h3>
+        <ul>
+          <li><strong>Tenali Raman:</strong> South Indian poet of wit.</li>
+          <li><strong>Birbal & Akbar:</strong> Stories of Mughal wisdom.</li>
+          <li><strong>Nala & Damayanti:</strong> Romantic epic of fate.</li>
+          <li><strong>Manasa Devi:</strong> Snake goddess of Bengal.</li>
+        </ul>
+    
+        <h3>3. Buddhist & Jain Myths</h3>
+        <ul>
+          <li><strong>Jataka Tales:</strong> Buddha’s past lives and lessons.</li>
+          <li><strong>Tirthankaras:</strong> Jain sages and miracles.</li>
+        </ul>
+      </section>
+    </main>
+    
+
+    <footer>
+        <p>&copy; 2025 MythMapped. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function filterMyths() {
+            const selectedRegion = document.getElementById('regionFilter').value;
+            const cards = document.querySelectorAll('.myth-card');
+
+            cards.forEach(card => {
+                if (selectedRegion === 'all' || card.classList.contains(`region-${selectedRegion}`)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
