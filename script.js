@@ -5,5 +5,8 @@ document.addEventListener('mousemove', (e) => {
     pointer.style.top = `${e.clientY}px`;
 });
 
-
-
+function toggleMyth(card) {
+    const details = card.querySelector(".myth-details");
+    details.classList.toggle("show");
+  }
+  

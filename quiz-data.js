@@ -132,48 +132,112 @@ const quizDatabase = {
 let currentLevel = "";
 let currentIndex = 0;
 let score = 0;
+let streak = 0;
+let timer;
+let timeLimit = 20; // seconds
+let incorrectAnswers = [];
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 function startQuiz() {
   currentLevel = document.getElementById("difficulty").value;
   if (!currentLevel || !quizDatabase[currentLevel]) return;
+  quizDatabase[currentLevel] = shuffleArray([...quizDatabase[currentLevel]]); // avoid modifying original
   currentIndex = 0;
   score = 0;
+  streak = 0;
+  incorrectAnswers = [];
   document.getElementById("quiz-container").style.display = "block";
   loadQuestion();
 }
 
+
 function loadQuestion() {
   const questionData = quizDatabase[currentLevel][currentIndex];
-  document.getElementById("question").innerText = questionData.q;
+  const total = quizDatabase[currentLevel].length;
+  document.getElementById("question").innerText = `Q${currentIndex + 1} of ${total}: ${questionData.q}`;
 
   const optionsContainer = document.getElementById("options");
   optionsContainer.innerHTML = "";
   questionData.options.forEach(option => {
     const btn = document.createElement("button");
     btn.textContent = option;
-    btn.onclick = () => {
-      if (option === questionData.answer) score++;
-      nextQuestion();
-    };
+    btn.className = "option-button fade-in";
+    btn.onclick = function () {
+      handleAnswer(option, questionData.answer, questionData);
+    };    
     optionsContainer.appendChild(btn);
   });
+
+  startTimer();
+  document.getElementById("progress").style.width =
+  ((currentIndex + 1) / quizDatabase[currentLevel].length) * 100 + "%";
+
+}
+
+function handleAnswer(selected, correct, questionData) {
+  clearInterval(timer);
+  if (selected === correct) {
+    streak++;
+    score += 1;
+    if (streak % 3 === 0) score += 1;
+  } else {
+    streak = 0;
+    incorrectAnswers.push({ q: questionData.q, correct: questionData.answer, selected });
+  }
+  nextQuestion();
 }
 
 function nextQuestion() {
   currentIndex++;
   if (currentIndex < quizDatabase[currentLevel].length) {
-    loadQuestion();
+    setTimeout(() => {
+      loadQuestion();
+    }, 300); // transition delay
   } else {
-    document.getElementById("quiz-container").innerHTML = `
-      <p>Your final score: ${score}/${quizDatabase[currentLevel].length}</p>
-      <button onclick="location.reload()">Try Another Level</button>
-    `;
+    showResults();
   }
 }
 
-// Custom pointer (keep this if already added)
-document.addEventListener('mousemove', (e) => {
-  const pointer = document.getElementById('custom-pointer');
-  pointer.style.left = `${e.clientX}px`;
-  pointer.style.top = `${e.clientY}px`;
-});
+function showResults() {
+  let html = `<h2>Your Final Score: ${score}/${quizDatabase[currentLevel].length}</h2>`;
+  html += `<p><strong>Streak Bonus:</strong> ${Math.floor(score / 4)} point(s)</p>`;
+
+  if (incorrectAnswers.length > 0) {
+    html += `<h3>Review Incorrect Answers</h3><ul>`;
+    incorrectAnswers.forEach(item => {
+      html += `<li><strong>Q:</strong> ${item.q}<br>
+               <strong>Your Answer:</strong> ${item.selected}<br>
+               <strong>Correct Answer:</strong> ${item.correct}</li><br>`;
+    });
+    html += `</ul>`;
+  } else {
+    html += `<p>🎉 You got all questions right!</p>`;
+  }
+
+  html += `<button onclick="location.reload()">Try Another Level</button>`;
+  document.getElementById("quiz-container").innerHTML = html;
+}
+
+
+function startTimer() {
+  let countdown = timeLimit;
+  const timerDisplay = document.getElementById("score");
+  timerDisplay.innerText = `⏳ Time left: ${countdown}s`;
+
+  timer = setInterval(() => {
+    countdown--;
+    timerDisplay.innerText = `⏳ Time left: ${countdown}s`;
+    if (countdown <= 0) {
+      clearInterval(timer);
+      streak = 0;
+      nextQuestion();
+    }
+  }, 1000);
+}

@@ -6,6 +6,7 @@
   <title>Quiz | MythMapped</title>
   <link rel="stylesheet" href="style.css" />
   <script src="quiz-data.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div id="custom-pointer"></div>
@@ -26,24 +27,26 @@
 
   <section class="quiz-section">
     <div class="quiz-box">
-      <h2>Select Difficulty</h2>
+      <h2 class="title">🧠 MythMapped Quiz Challenge</h2>
+      <p class="subtitle">Choose your difficulty and test your mythological wisdom!</p>
+  
       <select id="difficulty" onchange="startQuiz()">
-        <option value="">-- Choose a Level --</option>
+        <option value="">-- Select Level --</option>
         <option value="easy">🟢 Easy</option>
         <option value="medium">🟡 Medium</option>
         <option value="hard">🔴 Hard</option>
         <option value="extreme">🔵 Extreme</option>
         <option value="insanity">💀 Insanity</option>
       </select>
-
+          <br><br>
       <div id="quiz-container" style="display: none;">
+        <div class="progress-bar"><div id="progress"></div></div>
         <p id="question"></p>
         <div id="options"></div>
-        <button onclick="nextQuestion()">Next</button>
         <p id="score"></p>
       </div>
     </div>
-  </section>
+  </section>  
 
   <footer>
     <p>&copy; 2025 MythMapped. All rights reserved.</p>
