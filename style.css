@@ -9,11 +9,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: #f3f0e6 url('Images/parchment-bg.jpg') repeat;
+    background: #faf3ef;
     color: #2f2f2f;
     cursor: none;
 }
-
 header {
     text-align: center;
     padding: 30px 20px 10px;
