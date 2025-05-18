@@ -7,264 +7,59 @@
   <link rel="stylesheet" href="style.css" />
   <script src="quiz-data.js"></script>
   <script src="script.js" defer></script>
-  <style>
-    body {
-      background-color: #fdf6ee;
-      font-family: 'Segoe UI', sans-serif;
-    }
-  
-    .quiz-section {
-      max-width: 700px;
-      margin: 60px auto 30px;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-  
-    .quiz-box h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-      color: #3b2f2f;
-    }
-  
-    .quiz-box p {
-      font-size: 1.2em;
-      margin-bottom: 15px;
-    }
-  
-    .option-button {
-      display: block;
-      width: 70%;
-      margin: 12px auto;
-      padding: 14px 20px;
-      font-size: 1.1em;
-      background-color: #ffd5b5;
-      color: #3b2f2f;
-      border: 2px solid #e49068;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 0 transparent;
-    }
-  
-    .option-button:hover {
-      background-color: #ffb990;
-      transform: scale(1.04);
-    }
-  
-    .option-button.correct {
-      background-color: #d4fcd6;
-      border-color: #5dbb63;
-      color: #2e4f2f;
-      box-shadow: 0 0 15px #7efb90aa;
-    }
-  
-    .option-button.wrong {
-      background-color: #ffd2d2;
-      border-color: #e06a6a;
-      color: #5a1e1e;
-      box-shadow: 0 0 15px #ff9f9faa;
-    }
-  
-    #score {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #3b2f2f;
-    }
-  
-    .progress-bar {
-      width: 100%;
-      height: 12px;
-      background-color: #eee;
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-  
-    #progress {
-      height: 100%;
-      width: 0%;
-      background-color: #8c2f39;
-      transition: width 0.4s ease;
-    }
-.creator-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  margin: 40px 0;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap;
-}
-
-.creator-img-outside {
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.creator-card {
-  flex: 1;
-  max-width: 600px;
-  padding: 20px;
-  background-color: #fdfdfc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.08);
-  font-size: 1em;
-  line-height: 1.6;
-  color: #3b2f2f;
-}
-  
-  </style>
 </head>
 <body>
   <div id="custom-pointer"></div>
-<header>
-  <h1>Myth Quiz</h1>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="map.html">Interactive Map</a></li>
-      <li><a href="myths.html">Explore Myths</a></li>
-      <li><a href="quiz.html" class="active">Quiz</a></li>
-      <li><a href="contribute.html">Contribute</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-</header>
 
-<section class="quiz-section" style="max-width: 900px; margin: 20px auto; padding: 20px;">
+  <header>
+    <h1>Myth Quiz</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="map.html">Interactive Map</a></li>
+        <li><a href="myths.html">Explore Myths</a></li>
+        <li><a href="quiz.html" class="active">Quiz</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="quiz-hero" style="text-align: center; padding: 40px 25px; background: linear-gradient(120deg, #fbe2d8, #f9d5c1); border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 30px;">
-    <h2 style="font-size: 2.5em; color: #4a2f1d; margin-bottom: 10px;">🧠 MythMapped Quiz Challenge</h2>
-    <p style="font-size: 1.2em; color: #5e4b3b;">Test your mythological wisdom!</p>
-  </div>
-
-  <div class="quiz-box" style="background: rgba(255,255,255,0.95); border-radius: 12px; padding: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center;">
-    <select id="difficulty" onchange="startQuiz()" style="padding: 12px 20px; font-size: 1.1em; border-radius: 8px; border: 1px solid #ccc; background: #f9f9f9;">
-      <option value="">-- Select Level --</option>
-      <option value="easy">🟢 Easy</option>
-      <option value="medium">🟡 Medium</option>
-      <option value="hard">🔴 Hard</option>
-      <option value="extreme">🔵 Extreme</option>
-      <option value="insanity">💀 Insanity</option>
-    </select>
-
-    <br><br>
-
-    <div id="result-message" style="font-size: 1.4em; margin-bottom: 15px;"></div>
-
-    <div id="quiz-container" style="display: none; margin-top: 20px;">
-      <div class="progress-bar" style="height: 8px; background: #eee; border-radius: 5px; overflow: hidden; margin-bottom: 20px;">
-        <div id="progress" style="height: 8px; background: linear-gradient(to right, #8e44ad, #3498db); width: 0%;"></div>
-      </div>
-
-      <p id="question" style="font-size: 1.6em; margin-bottom: 25px;"></p>
-
-      <div id="options" style="display: flex; flex-direction: column; gap: 18px; padding: 0 10px;">
-        <!-- Options will load here -->
-      </div>
-
-      <p id="score" style="margin-top: 25px; font-size: 1.2em;"></p>
+  <section class="quiz-section" style="max-width: 900px; margin: 20px auto 40px; padding: 10px;">
+    
+    <div class="quiz-hero" style="text-align: center; padding: 40px 20px; background: linear-gradient(120deg, #f9e7d7, #f3d9c3); border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 30px;">
+      <h2 class="title" style="font-size: 2.4em; color: #4a2f1d; margin-bottom: 10px; animation: fadeInDown 1s ease;">🧠 MythMapped Quiz Challenge</h2>
+      <p class="subtitle" style="font-size: 1.2em; color: #5e4b3b; animation: fadeInDown 1.5s ease;">Select a level and test your mythological wisdom!</p>
     </div>
-  </div>
 
-</section>
+    <div class="quiz-box">
+      <select id="difficulty" onchange="startQuiz()">
+        <option value="">-- Select Level --</option>
+        <option value="easy">🟢 Easy</option>
+        <option value="medium">🟡 Medium</option>
+        <option value="hard">🔴 Hard</option>
+        <option value="extreme">🔵 Extreme</option>
+        <option value="insanity">💀 Insanity</option>
+      </select>
+      <br><br>
+      <div id="result-message" style="text-align:center; font-size:1.3em; margin-bottom: 15px;"></div>
 
-<footer>
-  <p>&copy; 2025 MythMapped. All rights reserved.</p>
-</footer>
+      <div id="quiz-container" style="display: none; margin-top: 25px;">
+        <div class="progress-bar">
+          <div id="progress"></div>
+        </div>
+        <p id="question" style="font-size: 1.4em; margin-bottom: 20px;"></p>
+        <div id="options">
+          <!-- Options will appear here -->
+        </div>
+        <p id="score" style="margin-top: 20px; font-size: 1.2em;"></p>
+      </div>
+    </div>
+  </section>
 
-<script>
-let currentQuestionIndex = 0;
-let questions = [];
-let currentQuestion = {};
-
-function startQuiz() {
-  const difficulty = document.getElementById('difficulty').value;
-  if (!difficulty) return;
-  
-  questions = quizData[difficulty];
-  currentQuestionIndex = 0;
-  
-  document.getElementById('quiz-container').style.display = 'block';
-  showQuestion();
-}
-
-function showQuestion() {
-  currentQuestion = questions[currentQuestionIndex];
-  document.getElementById('question').innerText = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
-  
-  const optionsDiv = document.getElementById('options');
-  optionsDiv.innerHTML = '';
-
-  currentQuestion.options.forEach((option, index) => {
-    const btn = document.createElement('button');
-    btn.innerText = option;
-    btn.onclick = () => handleOptionClick(btn, index);
-    optionsDiv.appendChild(btn);
-  });
-
-  updateProgress();
-}
-
-function handleOptionClick(selectedButton, index) {
-  const isCorrect = index === currentQuestion.correctAnswer;
-
-  if (isCorrect) {
-    selectedButton.classList.add('correct');
-    showResultMessage('Correct! 🎉', true);
-  } else {
-    selectedButton.classList.add('wrong');
-    showResultMessage('Wrong! ❌', false);
-  }
-
-  // Disable all options
-  const buttons = document.querySelectorAll('#options button');
-  buttons.forEach(btn => {
-    btn.disabled = true;
-    btn.style.cursor = "not-allowed";
-  });
-
-  // Move to next automatically after 2 seconds
-  setTimeout(() => {
-    loadNextQuestion();
-  }, 2000);
-}
-
-function showResultMessage(message, isCorrect) {
-  const resultDiv = document.getElementById('result-message');
-  resultDiv.textContent = message;
-  resultDiv.style.color = isCorrect ? '#4CAF50' : '#FF4C4C';
-}
-
-function loadNextQuestion() {
-  currentQuestionIndex++;
-  document.getElementById('result-message').textContent = '';
-
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-  } else {
-    endQuiz();
-  }
-}
-
-function endQuiz() {
-  document.getElementById('quiz-container').innerHTML = `<h2>🎉 Quiz Completed!</h2><p>Your final score: ${currentQuestionIndex}/${questions.length}</p>`;
-}
-
-function updateProgress() {
-  const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
-  document.getElementById('progress').style.width = progressPercent + "%";
-}
-</script>
-
+  <footer>
+    <p>&copy; 2025 MythMapped. All rights reserved.</p>
+  </footer>
 </body>
 </html>
-
+#Kavish u also have to add script and style files in this file.
